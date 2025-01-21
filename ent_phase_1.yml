@@ -1,0 +1,15 @@
+name: "Ent"
+healthMultiplier: 8 # change as fit, must be 2 * actual multiplier
+eliteScript:
+  Initialize:
+    Events:
+    - EliteMobSpawnEvent
+    Actions:
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "say Ent activated!"
+    - action: PLAY_SOUND
+      Target:
+        targetType: SELF
+      sValue: "minecraft:entity.warden.dig"

@@ -1,0 +1,37 @@
+name: "Ent"
+healthMultiplier: 10000
+eliteScript:
+  Initialize:
+    Events:
+    - EliteMobSpawnEvent
+    Actions:
+    # - action: RUN_COMMAND_AS_CONSOLE
+    #   Target:
+    #     targetType: SELF
+    #   sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1] at @s align xyz run tp @s ~0.5 ~ ~0.5" # may not be necessary, mobs seem to be spawned on integer coords anyways
+    # don't move in this state
+    - action: SET_MOB_AI
+      Target:
+        targetType: SELF
+      bValue: no
+      duration: -1
+    # kill self (tp into void) if incorrect biome
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] at @s unless biome ~ ~ ~ minecraft:dark_forest run tp @s ~ -10000 ~"
+    # don't take actual damage in case the player is OP
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "effect give @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] minecraft:resistance infinite 255 true"
+  Awake:
+    Events:
+    - EliteMobDamagedByPlayerEvent
+    Actions:
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] store result entity @s Health float 0.5 run attribute @s max_health get"
+phases:
+- ent_phase_1.yml:0.9
