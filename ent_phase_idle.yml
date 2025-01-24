@@ -1,5 +1,6 @@
 name: "Ent"
 healthMultiplier: 10000
+bossType: BOSS
 eliteScript:
   Initialize:
     Events:
@@ -15,16 +16,25 @@ eliteScript:
         targetType: SELF
       bValue: no
       duration: -1
+    - action: SCALE
+      Target:
+        targetType: SELF
+      scale: 3.5
     # kill self (tp into void) if incorrect biome
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] at @s unless biome ~ ~ ~ minecraft:dark_forest run tp @s ~ -10000 ~"
+      # sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] at @s unless biome ~ ~ ~ minecraft:dark_forest run tp @s ~ -10000 ~"
+      sValue: "say [DEBUG] Biome restriction disabled"
     # don't take actual damage in case the player is OP
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
       sValue: "effect give @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] minecraft:resistance infinite 255 true"
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "item replace entity @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] armor.head with minecraft:leather_helmet"
   Awake:
     Events:
     - EliteMobDamagedByPlayerEvent
