@@ -1,6 +1,7 @@
 name: "Ent"
 healthMultiplier: 10000
 bossType: BOSS
+customModel: ent_boss_model_debug_donotuse
 eliteScript:
   Initialize:
     Events:
