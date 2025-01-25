@@ -1,10 +1,15 @@
 name: "Ent"
 healthMultiplier: 8 # change as fit, must be 2 * actual multiplier
+bossType: BOSS
 eliteScript:
   Initialize:
     Events:
     - EliteMobSpawnEvent
     Actions:
+    - action: SCALE
+      Target:
+        targetType: SELF
+      scale: 3.5
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
@@ -13,3 +18,81 @@ eliteScript:
       Target:
         targetType: SELF
       sValue: "minecraft:entity.warden.dig"
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] run fill ~-2.5 ~10 ~-2.5 ~2.5 ~ ~2.5 minecraft:air replace #minecraft:leaves"
+      repeatEvery: 1
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "item replace entity @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] armor.head with minecraft:leather_helmet"
+  Targeting:
+    Events:
+    - EliteMobSpawnEvent
+    Zone:
+      shape: CYLINDER
+      radius: 32
+      height: 10
+      filter: PLAYER
+      Target:
+        targetType: SELF
+        offset: "0,5,0"
+    Actions:
+    - action: NAVIGATE
+      Target:
+        targetType: ZONE_FULL
+      velocity: 1.0
+      duration: 100
+      repeatEvery: 100
+  BlockBreakAttack:
+    Events:
+    - EliteMobSpawnEvent
+    Actions:
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^1 0 1 0 0 0 force"
+      wait: 2
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^2 0 1 0 0 0 force"
+      wait: 4
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^3 0 1 0 0 0 force"
+      wait: 6
+      repeatEvery: 200
+    - action: PLAY_SOUND
+      Target:
+        targetType: SELF
+      sValue: "minecraft:entity.warden.sonic_boom"
+      wait: 8
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^4 0 1 0 0 0 force"
+      wait: 8
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^5 0 1 0 0 0 force"
+      wait: 10
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^6 0 1 0 0 0 force"
+      wait: 12
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^ ^ ^-2.5 ^10 ^10 minecraft:air replace #minecraft:leaves"
+      wait: 12
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^5 ^ ^-2.5 ^5 ^10 minecraft:air replace #minecraft:logs"
+      wait: 12
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^5 ^ ^-2.5 ^5 ^10 minecraft:air replace brown_mushroom_block"
+      wait: 12
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^5 ^ ^-2.5 ^5 ^10 minecraft:air replace red_mushroom_block"
+      wait: 12
+      repeatEvery: 200
+    - action: RUN_COMMAND_AS_CONSOLE
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^-5 ^ ^-2.5 ^5 ^10 minecraft:air replace mushroom_stem"
+      wait: 12
+      repeatEvery: 200
