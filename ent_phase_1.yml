@@ -77,22 +77,22 @@ eliteScript:
       wait: 12
       repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
-      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^ ^ ^-2.5 ^10 ^10 minecraft:air replace #minecraft:leaves"
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace #minecraft:leaves"
       wait: 12
       repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
-      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^5 ^ ^-2.5 ^5 ^10 minecraft:air replace #minecraft:logs"
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace #minecraft:logs"
       wait: 12
       repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
-      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^5 ^ ^-2.5 ^5 ^10 minecraft:air replace brown_mushroom_block"
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace brown_mushroom_block"
       wait: 12
       repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
-      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^5 ^ ^-2.5 ^5 ^10 minecraft:air replace red_mushroom_block"
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace red_mushroom_block"
       wait: 12
       repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
-      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^2.5 ^-5 ^ ^-2.5 ^5 ^10 minecraft:air replace mushroom_stem"
+      sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace mushroom_stem"
       wait: 12
       repeatEvery: 200
