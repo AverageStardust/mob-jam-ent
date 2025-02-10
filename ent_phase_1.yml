@@ -1,11 +1,16 @@
 name: "Ent"
 healthMultiplier: 8 # change as fit, must be 2 * actual multiplier
+customModel: ent_boss_model
 bossType: BOSS
 eliteScript:
   Initialize:
     Events:
     - EliteMobSpawnEvent
     Actions:
+    - action: PLAY_ANIMATION
+      Target:
+        targetType: SELF
+      sValue: "emerge_phase_1"
     - action: SCALE
       Target:
         targetType: SELF

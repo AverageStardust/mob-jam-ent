@@ -1,7 +1,7 @@
 name: "Ent"
-healthMultiplier: 10000
+healthMultiplier: 1.0
 bossType: BOSS
-customModel: ent_boss_model_debug_donotuse
+customModel: ent_boss_model
 eliteScript:
   Initialize:
     Events:
@@ -11,6 +11,11 @@ eliteScript:
     #   Target:
     #     targetType: SELF
     #   sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1] at @s align xyz run tp @s ~0.5 ~ ~0.5" # may not be necessary, mobs seem to be spawned on integer coords anyways
+    # play phase 0 idle animation
+    - action: PLAY_ANIMATION
+      Target:
+        targetType: SELF
+      sValue: "idle_phase_0"
     # don't move in this state
     - action: SET_MOB_AI
       Target:
@@ -45,4 +50,4 @@ eliteScript:
         targetType: SELF
       sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] store result entity @s Health float 0.5 run attribute @s max_health get"
 phases:
-- ent_phase_1.yml:0.9
+- ent_phase_1.yml:0.99
