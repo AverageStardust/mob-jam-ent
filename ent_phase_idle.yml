@@ -1,7 +1,7 @@
 name: "Ent"
 healthMultiplier: 1.0
 bossType: BOSS
-customModel: ent_boss_model
+customModel: ent_boss_model_0
 eliteScript:
   Initialize:
     Events:
@@ -15,7 +15,7 @@ eliteScript:
     - action: PLAY_ANIMATION
       Target:
         targetType: SELF
-      sValue: "idle_phase_0"
+      sValue: "idle"
     # don't move in this state
     - action: SET_MOB_AI
       Target:

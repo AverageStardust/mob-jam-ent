@@ -1,6 +1,6 @@
 name: "Ent"
 healthMultiplier: 8 # change as fit, must be 2 * actual multiplier
-customModel: ent_boss_model
+customModel: ent_boss_model_1
 bossType: BOSS
 eliteScript:
   Initialize:
@@ -10,7 +10,7 @@ eliteScript:
     - action: PLAY_ANIMATION
       Target:
         targetType: SELF
-      sValue: "emerge_phase_1"
+      sValue: "emerge"
     - action: SCALE
       Target:
         targetType: SELF
