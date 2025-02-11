@@ -7,6 +7,11 @@ eliteScript:
     Events:
     - EliteMobSpawnEvent
     Actions:
+    # mute
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] {Silent:1b}"
     - action: PLAY_ANIMATION
       Target:
         targetType: SELF
@@ -138,11 +143,15 @@ eliteScript:
       Target:
         targetType: SELF
       sValue: "damaged"
+    - action: PLAY_SOUND
+      Target:
+        targetType: SELF
+      sValue: "minecraft:entity.warden.hurt"
   Death:
     Events:
     - EliteMobDeathEvent
     Actions:
-    - action: PLAY_ANIMATION
+    - action: PLAY_SOUND
       Target:
         targetType: SELF
-      sValue: "death"
+      sValue: "minecraft:entity.warden.death"
