@@ -52,6 +52,10 @@ eliteScript:
     Events:
     - EliteMobSpawnEvent
     Actions:
+    - action: PLAY_ANIMATION
+      Target:
+        targetType: SELF
+      sValue: "break_block"
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^1 0 1 0 0 0 force"
       wait: 2
