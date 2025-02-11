@@ -56,6 +56,7 @@ eliteScript:
       Target:
         targetType: SELF
       sValue: "break_block"
+      repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^1 0 1 0 0 0 force"
       wait: 2
@@ -105,3 +106,43 @@ eliteScript:
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace mushroom_stem"
       wait: 12
       repeatEvery: 200
+  PlaceBerryBush:
+    Events:
+    - EliteMobSpawnEvent
+    Zone:
+      shape: CYLINDER
+      radius: 5
+      borderRadius: 4
+      height: 1
+      Target:
+        targetType: NEARBY_PLAYERS
+        range: 32
+    Actions:
+    - action: PLAY_ANIMATION
+      Target:
+        targetType: SELF
+      sValue: "place_berry"
+      repeatEvery: 300
+    - action: PLACE_BLOCK
+      Target:
+        targetType: ZONE_BORDER
+      duration: 120
+      material: SWEET_BERRY_BUSH
+      wait: 12
+      repeatEvery: 300
+  TakeDamage:
+    Events:
+    - EliteMobDamagedEvent
+    Actions:
+    - action: PLAY_ANIMATION
+      Target:
+        targetType: SELF
+      sValue: "damaged"
+  Death:
+    Events:
+    - EliteMobDeathEvent
+    Actions:
+    - action: PLAY_ANIMATION
+      Target:
+        targetType: SELF
+      sValue: "death"
