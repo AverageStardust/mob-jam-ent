@@ -1,7 +1,9 @@
 name: "Ent"
-healthMultiplier: 8 # change as fit, must be 2 * actual multiplier
+healthMultiplier: 8.0 # change as fit, must be 2 * actual multiplier
 customModel: ent_boss_model_1
 bossType: BOSS
+# announcementPriority: 2
+# locationMessage: '&2Ent: $distance blocks away!'
 eliteScript:
   Initialize:
     Events:
@@ -116,8 +118,8 @@ eliteScript:
     - EliteMobSpawnEvent
     Zone:
       shape: CYLINDER
-      radius: 5
-      borderRadius: 4
+      radius: 4
+      borderRadius: 3
       height: 1
       Target:
         targetType: NEARBY_PLAYERS
@@ -131,9 +133,9 @@ eliteScript:
     - action: PLACE_BLOCK
       Target:
         targetType: ZONE_BORDER
-      duration: 120
+      duration: 64
       material: SWEET_BERRY_BUSH
-      wait: 12
+      wait: 4
       repeatEvery: 300
   TakeDamage:
     Events:
@@ -147,6 +149,54 @@ eliteScript:
       Target:
         targetType: SELF
       sValue: "minecraft:entity.warden.hurt"
+  RangedAttack:
+    Events:
+    - EliteMobSpawnEvent
+    Zone:
+      shape: DOME
+      radius: 7
+      borderRadius: 6
+      Target:
+        targetType: SELF
+        track: true
+    Actions:
+    - action: PLAY_ANIMATION
+      Target:
+        targetType: SELF
+      sValue: "attack_ranged"
+      repeatEvery: 250
+    - action: SPAWN_PARTICLE
+      particles:
+      - particle: GLOW_SQUID_INK
+      Target:
+        targetType: ZONE_BORDER
+        track: true
+      repeatEvery: 250
+    - action: DAMAGE
+      Target: 
+        targetType: NEARBY_PLAYERS
+        range: 6
+      multiplier: 1.5
+      wait: 16
+      repeatEvery: 250
+    - action: PUSH
+      Zone:
+        shape: DOME
+        radius: 6
+      Target:
+        targetType: ZONE_FULL
+        track: true
+      RelativeVector:
+        SourceTarget:
+          targetType: SELF
+        DestinationTarget:
+          targetType: NEARBY_PLAYERS
+          range: 6
+        normalize: true
+        multiplier: 1.0
+        offset: 0,0.2,0
+      wait: 16
+      repeatEvery: 250
   Death:
     Events:
     - EliteMobDeathEvent

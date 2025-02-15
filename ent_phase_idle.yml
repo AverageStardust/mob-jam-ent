@@ -11,11 +11,6 @@ eliteScript:
     #   Target:
     #     targetType: SELF
     #   sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1] at @s align xyz run tp @s ~0.5 ~ ~0.5" # may not be necessary, mobs seem to be spawned on integer coords anyways
-    # play phase 0 idle animation
-    - action: PLAY_ANIMATION
-      Target:
-        targetType: SELF
-      sValue: "idle"
     # don't move in this state
     - action: SET_MOB_AI
       Target:
