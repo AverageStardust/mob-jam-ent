@@ -5,16 +5,12 @@ customModel: ent_boss_model_0
 isPersistent: true
 announcementPriority: 1
 locationMessage: '&2Beware of the ENT!'
-timeout: 99
+timeout: 32
 eliteScript:
   Initialize:
     Events:
     - EliteMobSpawnEvent
     Actions:
-    # - action: RUN_COMMAND_AS_CONSOLE
-    #   Target:
-    #     targetType: SELF
-    #   sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1] at @s align xyz run tp @s ~0.5 ~ ~0.5" # may not be necessary, mobs seem to be spawned on integer coords anyways
     # don't move in this state
     - action: SET_MOB_AI
       Target:
@@ -29,8 +25,7 @@ eliteScript:
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      # sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] at @s unless biome ~ ~ ~ minecraft:dark_forest run tp @s ~ -10000 ~"
-      sValue: "say [DEBUG] Biome restriction disabled"
+      sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] at @s unless biome ~ ~ ~ minecraft:dark_forest run tp @s ~ -10000 ~"
     # don't take actual damage in case the player is OP
     - action: RUN_COMMAND_AS_CONSOLE
       Target:

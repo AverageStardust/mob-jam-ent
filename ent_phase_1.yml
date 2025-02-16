@@ -30,10 +30,14 @@ eliteScript:
       Target:
         targetType: SELF
       scale: 3.5
-    - action: RUN_COMMAND_AS_CONSOLE
-      Target:
-        targetType: SELF
-      sValue: "say Ent activated!"
+    - action: TITLE_MESSAGE
+      Target: 
+        targetType: NEARBY_PLAYERS
+        range: 128
+      title: "&2Ent activated!"
+      duration: 60
+      fadeIn: 10
+      fadeOut: 10
     - action: PLAY_SOUND
       Target:
         targetType: SELF
@@ -82,15 +86,12 @@ eliteScript:
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^1 0 1 0 0 0 force"
       wait: 2
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^2 0 1 0 0 0 force"
       wait: 4
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^3 0 1 0 0 0 force"
       wait: 6
-      # repeatEvery: 200
     - action: PLAY_SOUND
       Target:
         targetType: SELF
@@ -99,35 +100,27 @@ eliteScript:
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^4 0 1 0 0 0 force"
       wait: 8
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^5 0 1 0 0 0 force"
       wait: 10
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^6 0 1 0 0 0 force"
       wait: 12
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace #minecraft:leaves"
       wait: 12
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace #minecraft:logs"
       wait: 12
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace brown_mushroom_block"
       wait: 12
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace red_mushroom_block"
       wait: 12
-      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace mushroom_stem"
       wait: 12
-      # repeatEvery: 200
     Cooldowns:
       local: 120
       global: 20
@@ -200,6 +193,11 @@ eliteScript:
         targetType: NEARBY_PLAYERS
         range: 10
       sValue: "&cRanged attack incoming! Leave the area!"
+    - action: PLAY_SOUND
+      Target:
+        targetType: SELF
+      sValue: "minecraft:entity.zombie.attack_wooden_door"
+      wait: 24
     - action: DAMAGE
       Target: 
         targetType: NEARBY_PLAYERS
