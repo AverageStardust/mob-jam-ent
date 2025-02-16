@@ -2,6 +2,10 @@ name: "Ent"
 healthMultiplier: 1.0
 bossType: BOSS
 customModel: ent_boss_model_0
+isPersistent: true
+announcementPriority: 1
+locationMessage: '&2Beware of the ENT!'
+timeout: 99
 eliteScript:
   Initialize:
     Events:
@@ -25,22 +29,27 @@ eliteScript:
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      # sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] at @s unless biome ~ ~ ~ minecraft:dark_forest run tp @s ~ -10000 ~"
+      # sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] at @s unless biome ~ ~ ~ minecraft:dark_forest run tp @s ~ -10000 ~"
       sValue: "say [DEBUG] Biome restriction disabled"
     # don't take actual damage in case the player is OP
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      sValue: "effect give @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] minecraft:resistance infinite 255 true"
+      sValue: "effect give @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] minecraft:resistance infinite 255 true"
     # mute
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] {Silent:1b}"
+      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] {Silent:1b}"
+    # don't burn in day
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      sValue: "item replace entity @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] armor.head with minecraft:leather_helmet"
+      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] {Paper.ShouldBurnInDay:0b}"
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "item replace entity @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] armor.head with minecraft:leather_helmet"
   Awake:
     Events:
     - EliteMobDamagedByPlayerEvent
@@ -48,6 +57,7 @@ eliteScript:
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] store result entity @s Health float 0.5 run attribute @s max_health get"
+      sValue: "execute as @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] store result entity @s Health float 0.5 run attribute @s max_health get"
 phases:
 - ent_phase_1.yml:0.99
+- ent_phase_death.yml:0.05

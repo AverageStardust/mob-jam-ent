@@ -1,0 +1,37 @@
+name: "Ent"
+customModel: ent_boss_model_1
+eliteScript:
+  Death:
+    Events:
+    - EliteMobSpawnEvent
+    Actions:
+    # mute
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] {Silent:1b}"
+    # don't burn in day
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] {Paper.ShouldBurnInDay:0b}"
+    - action: SET_MOB_AI
+      Target:
+        targetType: SELF
+      bValue: false
+      duration: -1
+    - action: PLAY_ANIMATION
+      Target:
+        targetType: SELF
+      sValue: "death"
+      repeatEvery: 3
+      times: 1
+    - action: PLAY_SOUND
+      Target:
+        targetType: SELF
+      sValue: "minecraft:entity.warden.death"
+    - action: DAMAGE
+      Target: 
+        targetType: SELF
+      multiplier: 999
+      wait: 30

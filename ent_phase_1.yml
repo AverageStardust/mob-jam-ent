@@ -1,9 +1,10 @@
 name: "Ent"
-healthMultiplier: 8.0 # change as fit, must be 2 * actual multiplier
+healthMultiplier: 2.0 # change as fit, must be 2 * actual multiplier
 customModel: ent_boss_model_1
 bossType: BOSS
-# announcementPriority: 2
-# locationMessage: '&2Ent: $distance blocks away!'
+announcementPriority: 1
+locationMessage: '&2Ent'
+movementSpeedAttribute: 0.3
 eliteScript:
   Initialize:
     Events:
@@ -13,11 +14,18 @@ eliteScript:
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] {Silent:1b}"
+      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] {Silent:1b}"
+    # don't burn in day
+    - action: RUN_COMMAND_AS_CONSOLE
+      Target:
+        targetType: SELF
+      sValue: "data merge entity @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] {Paper.ShouldBurnInDay:0b}"
     - action: PLAY_ANIMATION
       Target:
         targetType: SELF
       sValue: "emerge"
+      repeatEvery: 3
+      times: 1
     - action: SCALE
       Target:
         targetType: SELF
@@ -36,7 +44,7 @@ eliteScript:
     - action: RUN_COMMAND_AS_CONSOLE
       Target:
         targetType: SELF
-      sValue: "item replace entity @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] armor.head with minecraft:leather_helmet"
+      sValue: "item replace entity @e[x=$bossX,y=$bossY,z=$bossZ,name=Ent,limit=1,sort=nearest] armor.head with minecraft:leather_helmet"
   Targeting:
     Events:
     - EliteMobSpawnEvent
@@ -56,26 +64,33 @@ eliteScript:
       duration: 100
       repeatEvery: 100
   BlockBreakAttack:
+    Zone:
+      shape: CYLINDER
+      radius: 6
+      height: 10
+      Target:
+        targetType: SELF
     Events:
-    - EliteMobSpawnEvent
+    - ZoneLeaveEvent
     Actions:
     - action: PLAY_ANIMATION
       Target:
         targetType: SELF
       sValue: "break_block"
-      repeatEvery: 200
+      repeatEvery: 3
+      times: 1
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^1 0 1 0 0 0 force"
       wait: 2
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^2 0 1 0 0 0 force"
       wait: 4
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^3 0 1 0 0 0 force"
       wait: 6
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: PLAY_SOUND
       Target:
         targetType: SELF
@@ -84,38 +99,41 @@ eliteScript:
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^4 0 1 0 0 0 force"
       wait: 8
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^5 0 1 0 0 0 force"
       wait: 10
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run particle minecraft:sonic_boom ^ ^2 ^6 0 1 0 0 0 force"
       wait: 12
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace #minecraft:leaves"
       wait: 12
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace #minecraft:logs"
       wait: 12
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace brown_mushroom_block"
       wait: 12
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace red_mushroom_block"
       wait: 12
-      repeatEvery: 200
+      # repeatEvery: 200
     - action: RUN_COMMAND_AS_CONSOLE
       sValue: "execute at @e[x=$bossX,y=$bossY,z=$bossZ,limit=1,sort=nearest] anchored eyes facing entity @p feet run fill ^-2.5 ^-0 ^0 ^2.5 ^8 ^10 minecraft:air replace mushroom_stem"
       wait: 12
-      repeatEvery: 200
+      # repeatEvery: 200
+    Cooldowns:
+      local: 120
+      global: 20
   PlaceBerryBush:
     Events:
-    - EliteMobSpawnEvent
+    - EliteMobDamagedByPlayerEvent
     Zone:
       shape: CYLINDER
       radius: 4
@@ -129,14 +147,17 @@ eliteScript:
       Target:
         targetType: SELF
       sValue: "place_berry"
-      repeatEvery: 300
+      repeatEvery: 3
+      times: 1
     - action: PLACE_BLOCK
       Target:
         targetType: ZONE_BORDER
       duration: 64
       material: SWEET_BERRY_BUSH
       wait: 4
-      repeatEvery: 300
+    Cooldowns:
+      local: 120
+      global: 20
   TakeDamage:
     Events:
     - EliteMobDamagedEvent
@@ -151,11 +172,11 @@ eliteScript:
       sValue: "minecraft:entity.warden.hurt"
   RangedAttack:
     Events:
-    - EliteMobSpawnEvent
+    - ZoneEnterEvent
     Zone:
       shape: DOME
-      radius: 7
-      borderRadius: 6
+      radius: 8
+      borderRadius: 7
       Target:
         targetType: SELF
         track: true
@@ -164,25 +185,31 @@ eliteScript:
       Target:
         targetType: SELF
       sValue: "attack_ranged"
-      repeatEvery: 250
+      repeatEvery: 3
+      times: 1
     - action: SPAWN_PARTICLE
       particles:
       - particle: GLOW_SQUID_INK
       Target:
         targetType: ZONE_BORDER
         track: true
-      repeatEvery: 250
+      repeatEvery: 8
+      times: 3
+    - action: ACTION_BAR_MESSAGE
+      Target: 
+        targetType: NEARBY_PLAYERS
+        range: 10
+      sValue: "&cRanged attack incoming! Leave the area!"
     - action: DAMAGE
       Target: 
         targetType: NEARBY_PLAYERS
-        range: 6
+        range: 7
       multiplier: 1.5
-      wait: 16
-      repeatEvery: 250
+      wait: 24
     - action: PUSH
       Zone:
         shape: DOME
-        radius: 6
+        radius: 7
       Target:
         targetType: ZONE_FULL
         track: true
@@ -191,12 +218,14 @@ eliteScript:
           targetType: SELF
         DestinationTarget:
           targetType: NEARBY_PLAYERS
-          range: 6
+          range: 7
         normalize: true
         multiplier: 1.0
         offset: 0,0.2,0
-      wait: 16
-      repeatEvery: 250
+      wait: 24
+    Cooldowns:
+      local: 160
+      global: 20
   Death:
     Events:
     - EliteMobDeathEvent
