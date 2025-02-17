@@ -3,9 +3,9 @@
  
 Link to our Github repository: https://github.com/AverageStardust/mob-jam-ent
 
-# Mob Descirption
-<h3> Name: Ent
-<h3> Biome: Dark forest
+# Mob Description
+<b> Name:</b> Ent <br>
+<b> Biome:</b> Dark forest
   
 ## Behavior
 ### Spawn
@@ -24,8 +24,8 @@ Once the ent gets attacked by the player, they will attempt to place berry bushe
 # File Structure
 We created a custom ent model that contains sick animations for each of the behaviours descirbed above. However, every file must be placed in the correct location for the model to be displayed properly.
 ## yml files
-There are three crucial yml files [ent_phase_idle.yml](ent_phase_idle.yml), [ent_phase_1.yml](ent_phase_1.yml) and [ent_phase_death.yml](ent_phase_death.yml) that should go under the folder \plugins\EliteMobs\custombosses
+There are three crucial yml files [ent_phase_idle.yml](ent_phase_idle.yml), [ent_phase_1.yml](ent_phase_1.yml) and [ent_phase_death.yml](ent_phase_death.yml) that should go under the folder `server\plugins\EliteMobs\custombosses`
 ## bbmodel files
-There are two crucial blockbench model files [ent_boss_model_0.bbmodel](ent_boss_model_0.bbmodel) and [ent_boss_model_1.bbmodel](ent_boss_model_1.bbmodel) that should go under the folder \plugins\ModelEngine\blueprints
-## resource pack
+There are two crucial blockbench model files [ent_boss_model_0.bbmodel](ent_boss_model_0.bbmodel) and [ent_boss_model_1.bbmodel](ent_boss_model_1.bbmodel) that should go under the folder `server\plugins\ModelEngine\blueprints`
+## Resource pack
 The ent resource pack should be enabled for every player.
